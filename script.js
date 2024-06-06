@@ -3,8 +3,12 @@ window.addEventListener("load", list);
 function list() {
     console.log("Запуск!");
 
-    // массив для пунктов списка
-    let listArr = [];
+    // массив для пунктов списка (исходный)
+    let listArr = [
+        {id: 0, text: 'develop to-do-list app'},
+        {id: 1, text: 'study English'},
+        {id: 2, text: 'make cookies'},
+    ];
 
     //элементы формы
     const form = document.querySelector(".add-new-task-form");
@@ -15,6 +19,12 @@ function list() {
     console.log(inputAddElem);
     console.log(ulList);
     console.log(listArr);
+
+    // вывести пункты списка из массива (для примера)
+    listArr.forEach(function(elem) {
+        console.log(elem);
+        addItemToDOM(elem.id, elem.text);
+    });
 
     //очистить текст подсказки, если поле ввода в фокусе
     inputAddElem.onfocus = function(){
@@ -74,12 +84,10 @@ function list() {
         console.log(li);
     }
 
-
     // функция добавления элемента в массив listArr
-    /*function addItemToArray() {
-            
-    }*/
-
-    console.log(listArr);
+    function addItemToArray(id, text) {
+        listArr.push({id, text});
+        console.log(listArr);
+    }
 
 }
