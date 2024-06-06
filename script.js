@@ -1,7 +1,7 @@
 window.addEventListener("load", list);
 
 function list() {
-    console.log("Запуск!");
+                console.log("Запуск!");
 
     // массив для пунктов списка (исходный)
     let listArr = [
@@ -15,14 +15,18 @@ function list() {
     const inputAddElem = document.querySelector(".form-input");
     const ulList = document.querySelector(".task-list"); 
 
-    console.log(form);
-    console.log(inputAddElem);
-    console.log(ulList);
-    console.log(listArr);
+    //показать статистику
+    let statNumber = document.querySelector(".stat-number");
+    showStat(listArr.length);
+
+                console.log(form);
+                console.log(inputAddElem);
+                console.log(ulList);
+                console.log(listArr);
 
     // вывести пункты списка из массива (для примера)
     listArr.forEach(function(elem) {
-        console.log(elem);
+                console.log(elem);
         addItemToDOM(elem.id, elem.text);
     });
 
@@ -41,8 +45,8 @@ function list() {
         let itemId = String(Date.now()); // уникальное значение ID для элемента
         let itemText = inputAddElem.value; // введенное значение
 
-        console.log(itemId);
-        console.log(itemText);
+                console.log(itemId);
+                console.log(itemText);
 
         //запуск функций добавления элемента в DOM и в массив
         addItemToDOM(itemId, itemText);
@@ -81,13 +85,26 @@ function list() {
         spanButton.setAttribute("title", "Delete Task");
         li.append(spanButton);
 
-        console.log(li);
+                console.log(li);
     }
 
     // функция добавления элемента в массив listArr
     function addItemToArray(id, text) {
         listArr.push({id, text});
-        console.log(listArr);
+                console.log(listArr);
+                console.log(listArr.length);
+        removeOldStat();
+        showStat(listArr.length);
+    }
+
+    //удалить устаревшую статистику 
+    function removeOldStat() {
+        statNumber.textContent = "";  
+    }
+
+    // вывести статистику внизу списка
+    function showStat(itemNum) {
+        statNumber.prepend(itemNum);
     }
 
 }
