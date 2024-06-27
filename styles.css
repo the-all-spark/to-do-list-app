@@ -136,6 +136,16 @@ ul {
     cursor: pointer;
 }
 
+.toggle-completed {
+    background-color: #a49ebd;
+    border-color: #a49ebd;
+}
+
+.item-completed {
+    color: #a49ebd;
+    text-decoration: line-through;
+}
+
 /* -------------------- Statistic info-------------------- */
 
 .stat-info {
