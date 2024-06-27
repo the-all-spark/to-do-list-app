@@ -1,7 +1,6 @@
 window.addEventListener("load", list);
 
 function list() {
-                console.log("Запуск!");
 
     // массив для пунктов списка (исходный)
     let listArr = [
@@ -21,10 +20,10 @@ function list() {
 
                 console.log(form);
                 console.log(inputAddElem);
-                console.log(ulList);
+                console.log(ulList); // исходный массив
                 console.log(listArr);
 
-    // вывести пункты списка из массива (для примера)
+    // вывести пункты списка из массива listArr (для примера)
     listArr.forEach(function(elem) {
                 console.log(elem);
         addItemToDOM(elem.id, elem.text);
@@ -41,12 +40,12 @@ function list() {
 
     // при нажатии на кнопку Add -> запуск функций добавления элемента в DOM и в массив
     form.onsubmit = function(event) {
-        event.preventDefault(); // убрать перезагрузку страницы (установлена по умолчанию)
+        event.preventDefault(); // отменить перезагрузку страницы (установлена по умолчанию)
         let itemId = String(Date.now()); // уникальное значение ID для элемента
-        let itemText = inputAddElem.value; // введенное значение
+        let itemText = inputAddElem.value; // введенное в поле значение
 
-                console.log(itemId);
-                console.log(itemText);
+                //console.log(itemId);
+                //console.log(itemText);
 
         //запуск функций добавления элемента в DOM и в массив
         addItemToDOM(itemId, itemText);
@@ -55,7 +54,8 @@ function list() {
         inputAddElem.value = ''; // очистить поле ввода
     }
 
-    // функция добавления элемента в DOM
+    // функция добавления элемента в DOM: принимает id элемента и его содержимое (text)
+    // возвращает пункт списка (элемент li) для каждого элемента массива
     function addItemToDOM(id, text) {
 
         // создать элемент li
@@ -70,12 +70,13 @@ function list() {
         li.prepend(label);
 
         // создать вложенный в label элемент div (c тогглом)
-        let div = document.createElement('div');
-        div.className = "task-list-item-toggle";
-        label.prepend(div);
+        let divToggle = document.createElement('div');
+        divToggle.className = "task-list-item-toggle";
+        label.prepend(divToggle);
 
         // создать вложенный в label элемент span (с текстом заметки)
         let spanText = document.createElement('span');
+        spanText.className = "item-text";
         spanText.textContent = text;
         label.append(spanText);
 
@@ -86,25 +87,50 @@ function list() {
         li.append(spanButton);
 
                 console.log(li);
+
+                console.log(li.dataset.id);
+                console.log(divToggle);
+                console.log(spanText);
+
+        // на строку (тоггл + текст) вешаем обработчик - при клике запускается функция завершения задачи 
+        label.addEventListener("click", function () { completeElem(label, li.dataset.id, divToggle, spanText) });
+        //label.addEventListener("click", completeElem);
     }
 
-    // функция добавления элемента в массив listArr
+    // функция добавления элемента в массив listArr: принимает id элемента и его содержимое (text)
     function addItemToArray(id, text) {
         listArr.push({id, text});
-                console.log(listArr);
-                console.log(listArr.length);
+                // console.log(listArr);
+                // console.log(listArr.length);
         removeOldStat();
         showStat(listArr.length);
     }
 
-    //удалить устаревшую статистику 
+    //функция удаления устаревшей статистики
     function removeOldStat() {
         statNumber.textContent = "";  
     }
 
-    // вывести статистику внизу списка
+    // функция вывода статистики внизу списка: принимает длину массива элементов списка
     function showStat(itemNum) {
         statNumber.prepend(itemNum);
     }
+
+    // вычеркнуть элемент при выполнении
+    function completeElem(item, id, toggle, text) {
+        console.log("Вычеркиваем!");
+        console.log(item);
+        console.log(id);
+        console.log(toggle);
+        console.log(text);
+
+        toggle.classList.add("toggle-completed"); //добавить класс тогглу
+        text.classList.add("item-completed"); // добавить класс тексту с заметкой
+
+
+    }
+
+    
+    
 
 }
