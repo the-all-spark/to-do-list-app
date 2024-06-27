@@ -14,18 +14,17 @@ function list() {
     const inputAddElem = document.querySelector(".form-input");
     const ulList = document.querySelector(".task-list"); 
 
-    //показать статистику
+    //показать изначальную статистику
     let statNumber = document.querySelector(".stat-number");
     showStat(listArr.length);
 
-                console.log(form);
-                console.log(inputAddElem);
-                console.log(ulList); // исходный массив
-                console.log(listArr);
+        //console.log(form);
+        //console.log(inputAddElem);
+        //console.log(ulList); // только исходный массив
+        //console.log(listArr);
 
     // вывести пункты списка из массива listArr (для примера)
     listArr.forEach(function(elem) {
-                console.log(elem);
         addItemToDOM(elem.id, elem.text);
     });
 
@@ -38,16 +37,16 @@ function list() {
         inputAddElem.placeholder = "Add New Task";
     }
 
-    // при нажатии на кнопку Add -> запуск функций добавления элемента в DOM и в массив
+    // при нажатии на кнопку Add -> запуск функций добавления элемента в DOM, и в массив
     form.onsubmit = function(event) {
         event.preventDefault(); // отменить перезагрузку страницы (установлена по умолчанию)
         let itemId = String(Date.now()); // уникальное значение ID для элемента
         let itemText = inputAddElem.value; // введенное в поле значение
 
-                //console.log(itemId);
-                //console.log(itemText);
+            //console.log(itemId);
+            //console.log(itemText);
 
-        //запуск функций добавления элемента в DOM и в массив
+        //запуск функций добавления элемента в DOM, и в массив
         addItemToDOM(itemId, itemText);
         addItemToArray(itemId, itemText);
 
@@ -86,22 +85,21 @@ function list() {
         spanButton.setAttribute("title", "Delete Task");
         li.append(spanButton);
 
-                console.log(li);
+            //console.log(li);
+            //console.log(li.dataset.id);
+            //console.log(divToggle);
+            //console.log(spanText);
 
-                console.log(li.dataset.id);
-                console.log(divToggle);
-                console.log(spanText);
-
-        // на строку (тоггл + текст) вешаем обработчик - при клике запускается функция завершения задачи 
-        label.addEventListener("click", function () { completeElem(label, li.dataset.id, divToggle, spanText) });
-        //label.addEventListener("click", completeElem);
+        // на строку (тоггл + текст) вешаем обработчик - запускается функция завершения задачи (вычеркивание) или отмены  вычеркивания
+        label.addEventListener("click", function () { completeElem(li, divToggle, spanText) });
+        
     }
 
     // функция добавления элемента в массив listArr: принимает id элемента и его содержимое (text)
     function addItemToArray(id, text) {
         listArr.push({id, text});
-                // console.log(listArr);
-                // console.log(listArr.length);
+                //console.log(listArr);
+                //console.log(listArr.length);
         removeOldStat();
         showStat(listArr.length);
     }
@@ -116,21 +114,47 @@ function list() {
         statNumber.prepend(itemNum);
     }
 
-    // вычеркнуть элемент при выполнении
-    function completeElem(item, id, toggle, text) {
-        console.log("Вычеркиваем!");
-        console.log(item);
-        console.log(id);
-        console.log(toggle);
-        console.log(text);
+    // функция вычеркивания элемента при выполнении (или отмены операции вычеркивания)
+    // принимает сам элемент (li), div (c тогглом) и текст заметки
+    function completeElem(elem, toggle, text) {
+        console.log("Вычеркиваем или отменяем вычеркивание");
+            //console.log(toggle);
+            //console.log(text);
+            //console.log(elem);
 
-        toggle.classList.add("toggle-completed"); //добавить класс тогглу
-        text.classList.add("item-completed"); // добавить класс тексту с заметкой
+        toggle.classList.toggle("toggle-completed"); // добавить класс тогглу (если нет) или удалить (если есть)
+        text.classList.toggle("item-completed"); // добавить класс тексту с заметкой (если нет) или удалить (если есть)
+        elem.classList.toggle("completed");
 
+        // запуск функции подсчета невычеркнутых элементов
+        //countItemsForStats();
 
     }
 
-    
-    
+    /*function countItemsForStats() {
+        console.log("Считаем количество невычеркнутых элементов");
+
+        // общее количество элементов
+        let elems = document.getElementsByClassName("task-list-item");
+        console.log(elems); 
+        console.log(elems.length); 
+
+        // количество элементов с "completed"
+        let count = 0;
+        for(let i = 0; i < elems.length; i++) {
+            if(elems[i].classList.contains("completed")) {
+                count++;
+            }
+        }
+        console.log(count); 
+
+        // оставшиеся элементы - это невыполненные
+        let itemsToDo = elems.length - count;
+        console.log(itemsToDo);
+
+        removeOldStat();
+        showStat(itemsToDo);
+
+    }*/
 
 }
