@@ -16,7 +16,7 @@ function list() {
 
         //console.log(form);
         //console.log(inputAddElem);
-        //console.log(ulList); // только исходный массив
+        //console.log(ulList);
         //console.log(listArr);
 
     //показать изначальную статистику
@@ -55,6 +55,7 @@ function list() {
 
     // функция добавления элемента в DOM: принимает id элемента и его содержимое (text)
     // возвращает пункт списка (элемент li) для каждого элемента массива
+    // также запускает функцию подсчета статистики
     function addItemToDOM(id, text) {
 
         // создать элемент li
@@ -101,16 +102,11 @@ function list() {
     // функция добавления элемента в массив listArr: принимает id элемента и его содержимое (text)
     function addItemToArray(id, text) {
         listArr.push({id, text});
-                //console.log(listArr);
-                //console.log(listArr.length);
-                //removeOldStat();
-                //showStat(listArr.length);
     }
 
     // функция вычеркивания элемента при выполнении (или отмены операции вычеркивания)
     // принимает сам элемент (li), div (c тогглом) и текст заметки
     function completeElem(elem, toggle, text) {
-        console.log("Вычеркиваем или отменяем вычеркивание");
             //console.log(toggle);
             //console.log(text);
             //console.log(elem);
@@ -121,7 +117,6 @@ function list() {
 
         // запуск функции подсчета невычеркнутых элементов
         countItemsForStats();
-
     }
 
     // функция подсчета количества невычеркнутых (не выполненных) элементов
@@ -129,7 +124,7 @@ function list() {
         
         // общее количество элементов
         let elems = document.getElementsByClassName("task-list-item");
-            console.log(elems);  // элементы списка
+            //console.log(elems);  // элементы списка
             //console.log(elems.length);  // количество элементов списка
 
         // количество элементов с классом "completed"
@@ -156,11 +151,11 @@ function list() {
     }
 
     // функция вывода статистики внизу списка: принимает длину массива элементов списка
-    function showStat(itemNum) {  
-        if(itemNum == 0) {
-            itemNum = "no";
+    function showStat(amountOfItems) {  
+        if(amountOfItems == 0) {
+            amountOfItems = "no";
         }
-        statNumber.prepend(itemNum);
+        statNumber.prepend(amountOfItems);
     }
 
 }
