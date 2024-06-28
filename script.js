@@ -14,14 +14,14 @@ function list() {
     const inputAddElem = document.querySelector(".form-input");
     const ulList = document.querySelector(".task-list"); 
 
-    //показать изначальную статистику
-    let statNumber = document.querySelector(".stat-number");
-    showStat(listArr.length);
-
         //console.log(form);
         //console.log(inputAddElem);
         //console.log(ulList); // только исходный массив
         //console.log(listArr);
+
+    //показать изначальную статистику
+    let statNumber = document.querySelector(".stat-number");
+    showStat(listArr.length); 
 
     // вывести пункты списка из массива listArr (для примера)
     listArr.forEach(function(elem) {
@@ -90,6 +90,9 @@ function list() {
             //console.log(divToggle);
             //console.log(spanText);
 
+        // получить количество пунктов для вывода статистики
+        countItemsForStats();
+
         // на строку (тоггл + текст) вешаем обработчик - запускается функция завершения задачи (вычеркивание) или отмены  вычеркивания
         label.addEventListener("click", function () { completeElem(li, divToggle, spanText) });
         
@@ -100,18 +103,8 @@ function list() {
         listArr.push({id, text});
                 //console.log(listArr);
                 //console.log(listArr.length);
-        removeOldStat();
-        showStat(listArr.length);
-    }
-
-    //функция удаления устаревшей статистики
-    function removeOldStat() {
-        statNumber.textContent = "";  
-    }
-
-    // функция вывода статистики внизу списка: принимает длину массива элементов списка
-    function showStat(itemNum) {
-        statNumber.prepend(itemNum);
+                //removeOldStat();
+                //showStat(listArr.length);
     }
 
     // функция вычеркивания элемента при выполнении (или отмены операции вычеркивания)
@@ -127,34 +120,47 @@ function list() {
         elem.classList.toggle("completed");
 
         // запуск функции подсчета невычеркнутых элементов
-        //countItemsForStats();
+        countItemsForStats();
 
     }
 
-    /*function countItemsForStats() {
-        console.log("Считаем количество невычеркнутых элементов");
-
+    // функция подсчета количества невычеркнутых (не выполненных) элементов
+    function countItemsForStats() {
+        
         // общее количество элементов
         let elems = document.getElementsByClassName("task-list-item");
-        console.log(elems); 
-        console.log(elems.length); 
+            console.log(elems);  // элементы списка
+            //console.log(elems.length);  // количество элементов списка
 
-        // количество элементов с "completed"
+        // количество элементов с классом "completed"
         let count = 0;
         for(let i = 0; i < elems.length; i++) {
             if(elems[i].classList.contains("completed")) {
                 count++;
             }
         }
-        console.log(count); 
+            //console.log(count); // количество выполненных пунктов
 
-        // оставшиеся элементы - это невыполненные
+        // оставшиеся элементы - это невыполненные пункты списка
         let itemsToDo = elems.length - count;
-        console.log(itemsToDo);
+            //console.log(itemsToDo); // количество НЕвыполненных пунктов
 
         removeOldStat();
         showStat(itemsToDo);
 
-    }*/
+    }
+
+    //функция удаления устаревшей статистики
+    function removeOldStat() {
+        statNumber.textContent = "";  
+    }
+
+    // функция вывода статистики внизу списка: принимает длину массива элементов списка
+    function showStat(itemNum) {  
+        if(itemNum == 0) {
+            itemNum = "no";
+        }
+        statNumber.prepend(itemNum);
+    }
 
 }
