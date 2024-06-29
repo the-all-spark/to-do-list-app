@@ -145,11 +145,19 @@ function list() {
         statNumber.textContent = "";  
     }
 
-    // функция вывода статистики внизу списка: принимает длину массива элементов списка
-    function showStat(amountOfItems) {  
+    // функция вывода статистики внизу списка: принимает длину массива элементов списка,
+    // изменяет число оставшихся пунктов и слово "task" (ед. или мн. число)
+    function showStat(amountOfItems) { 
+        let ending = document.querySelector(".ending");
+        
         if(amountOfItems == 0) {
             amountOfItems = "no";
-        }
+            ending.textContent = "s";
+        } else if(amountOfItems == 1) {
+            ending.textContent = "";
+        } else {
+            ending.textContent = "s";
+        } 
         statNumber.prepend(amountOfItems);
     }
 

@@ -21,4 +21,4 @@
 3. _adding_ items to the list (as well as to the array of items) when clicking on the "Add" button or pressing Enter (JS);
 4. _crossing out_ the item when clicking on a line (the item is marked as completed) (JS);
 5. _deleting_ the item (including from the array) when clicking on the basket (JS);
-6. output statistics on the number of items left to be executed (statistics is recalculated when adding new items or deleting existing ones) (JS).
+6. output statistics on the number of items left to be executed (statistics is recalculated when adding new items or deleting existing ones). If there are no items, "You have no tasks to do" is displayed. If 1 item remains, word "task" is displayed, for the other values word "tasks" is shown (JS).
