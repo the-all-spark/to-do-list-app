@@ -135,14 +135,16 @@ function list() {
         
         // удалить из массива: найти элемент в массиве через его id, а затем его индекс в массиве
         let elem = listArr.find(elem => elem.id == id);
-        //console.log(elem);
+            //console.log(elem);
 
         let index = listArr.indexOf(elem);
-        //console.log(index);
+            //console.log(index);
 
         // начиная с определенного индекса, удалить 1 элемент
         listArr.splice(index, 1);
-        console.log(listArr); // результирующий массив
+            //console.log(listArr); // результирующий массив
+
+        countItemsForStats();
 
     }
 
