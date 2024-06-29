@@ -14,11 +14,6 @@ function list() {
     const inputAddElem = document.querySelector(".form-input");
     const ulList = document.querySelector(".task-list"); 
 
-        //console.log(form);
-        //console.log(inputAddElem);
-        //console.log(ulList);
-        //console.log(listArr);
-
     //показать изначальную статистику
     let statNumber = document.querySelector(".stat-number");
     showStat(listArr.length); 
@@ -43,9 +38,6 @@ function list() {
         let itemId = String(Date.now()); // уникальное значение ID для элемента
         let itemText = inputAddElem.value; // введенное в поле значение
 
-            //console.log(itemId);
-            //console.log(itemText);
-
         //запуск функций добавления элемента в DOM, и в массив
         addItemToArray(itemId, itemText);
         addItemToDOM(itemId, itemText);
@@ -56,16 +48,12 @@ function list() {
     // функция добавления элемента в массив listArr: принимает id элемента и его содержимое (text)
     function addItemToArray(id, text) {
         listArr.push({id, text});
-        //console.log(listArr);
-
     }
 
-    // функция добавления элемента в DOM: принимает id элемента и его содержимое (text)
-    // возвращает пункт списка (элемент li) для каждого элемента массива
+    // функция добавления элемента в DOM: принимает id элемента и его содержимое (text):
+    // возвращает пункт списка (элемент li) для каждого элемента массива,
     // также запускает функцию подсчета статистики
     function addItemToDOM(id, text) {
-
-        //console.log(listArr);
 
         // создать элемент li
         let li = document.createElement('li');
@@ -95,11 +83,6 @@ function list() {
         spanButton.setAttribute("title", "Delete Task");
         li.append(spanButton);
 
-            //console.log(li);
-            //console.log(li.dataset.id);
-            //console.log(divToggle);
-            //console.log(spanText);
-
         // получить количество пунктов для вывода статистики
         countItemsForStats();
 
@@ -107,16 +90,12 @@ function list() {
         label.addEventListener("click", function () { completeElem(li, divToggle, spanText) });
     
         // на кнопку удаления вешаем обработчик - запуск функции удаления задачи из DOM и массива
-        spanButton.addEventListener("click", function () { deleteElem(li.dataset.id, li) });
-        
+        spanButton.addEventListener("click", function () { deleteElem(li.dataset.id, li) });  
     }
 
-    // функция вычеркивания элемента при выполнении (или отмены операции вычеркивания)
+    // функция вычеркивания элемента при выполнении (или отмены операции вычеркивания):
     // принимает сам элемент (li), div (c тогглом) и текст заметки
     function completeElem(elem, toggle, text) {
-            //console.log(toggle);
-            //console.log(text);
-            //console.log(elem);
 
         toggle.classList.toggle("toggle-completed"); // добавить класс тогглу (если нет) или удалить (если есть)
         text.classList.toggle("item-completed"); // добавить класс тексту с заметкой (если нет) или удалить (если есть)
@@ -126,8 +105,7 @@ function list() {
         countItemsForStats();
     }
 
-    // функция удаления элемента из DOM и массива
-    // принимает id элемента и сам элемент
+    // функция удаления элемента из DOM и массива: принимает id элемента и сам элемент
     function deleteElem(id, item) {
 
         //удалить из DOM
@@ -135,17 +113,10 @@ function list() {
         
         // удалить из массива: найти элемент в массиве через его id, а затем его индекс в массиве
         let elem = listArr.find(elem => elem.id == id);
-            //console.log(elem);
-
         let index = listArr.indexOf(elem);
-            //console.log(index);
-
-        // начиная с определенного индекса, удалить 1 элемент
-        listArr.splice(index, 1);
-            //console.log(listArr); // результирующий массив
+        listArr.splice(index, 1); // начиная с определенного индекса, удалить 1 элемент
 
         countItemsForStats();
-
     }
 
     // функция подсчета количества невычеркнутых (не выполненных) элементов
@@ -153,8 +124,6 @@ function list() {
         
         // общее количество элементов
         let elems = document.getElementsByClassName("task-list-item");
-            //console.log(elems);  // элементы списка
-            //console.log(elems.length);  // количество элементов списка
 
         // количество элементов с классом "completed"
         let count = 0;
@@ -163,15 +132,12 @@ function list() {
                 count++;
             }
         }
-            //console.log(count); // количество выполненных пунктов
 
         // оставшиеся элементы - это невыполненные пункты списка
         let itemsToDo = elems.length - count;
-            //console.log(itemsToDo); // количество НЕвыполненных пунктов
 
         removeOldStat();
         showStat(itemsToDo);
-
     }
 
     //функция удаления устаревшей статистики
