@@ -47,16 +47,25 @@ function list() {
             //console.log(itemText);
 
         //запуск функций добавления элемента в DOM, и в массив
-        addItemToDOM(itemId, itemText);
         addItemToArray(itemId, itemText);
+        addItemToDOM(itemId, itemText);
 
         inputAddElem.value = ''; // очистить поле ввода
+    }
+
+    // функция добавления элемента в массив listArr: принимает id элемента и его содержимое (text)
+    function addItemToArray(id, text) {
+        listArr.push({id, text});
+        //console.log(listArr);
+
     }
 
     // функция добавления элемента в DOM: принимает id элемента и его содержимое (text)
     // возвращает пункт списка (элемент li) для каждого элемента массива
     // также запускает функцию подсчета статистики
     function addItemToDOM(id, text) {
+
+        //console.log(listArr);
 
         // создать элемент li
         let li = document.createElement('li');
@@ -96,12 +105,10 @@ function list() {
 
         // на строку (тоггл + текст) вешаем обработчик - запускается функция завершения задачи (вычеркивание) или отмены  вычеркивания
         label.addEventListener("click", function () { completeElem(li, divToggle, spanText) });
+    
+        // на кнопку удаления вешаем обработчик - запуск функции удаления задачи из DOM и массива
+        spanButton.addEventListener("click", function () { deleteElem(li.dataset.id, li) });
         
-    }
-
-    // функция добавления элемента в массив listArr: принимает id элемента и его содержимое (text)
-    function addItemToArray(id, text) {
-        listArr.push({id, text});
     }
 
     // функция вычеркивания элемента при выполнении (или отмены операции вычеркивания)
@@ -117,6 +124,26 @@ function list() {
 
         // запуск функции подсчета невычеркнутых элементов
         countItemsForStats();
+    }
+
+    // функция удаления элемента из DOM и массива
+    // принимает id элемента и сам элемент
+    function deleteElem(id, item) {
+
+        //удалить из DOM
+        item.remove();
+        
+        // удалить из массива: найти элемент в массиве через его id, а затем его индекс в массиве
+        let elem = listArr.find(elem => elem.id == id);
+        //console.log(elem);
+
+        let index = listArr.indexOf(elem);
+        //console.log(index);
+
+        // начиная с определенного индекса, удалить 1 элемент
+        listArr.splice(index, 1);
+        console.log(listArr); // результирующий массив
+
     }
 
     // функция подсчета количества невычеркнутых (не выполненных) элементов
