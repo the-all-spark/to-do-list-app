@@ -3,6 +3,7 @@
 [Switch to Russian | Переключиться на русский](./readme-ru.md)
 
 ## About the project
+A list of tasks in To Do List format. You can add new items to the list, cross off completed tasks (with the ability to undo this action), and delete them. The number of uncompleted tasks is displayed at the bottom of the list.
 
 **Tools:** 
 ![image](https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white "Visual Studio Code")
@@ -12,7 +13,7 @@
 ![image](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white "CSS") 
 ![image](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E "JS") 
 
-**Demo:** [Link](https://the-all-spark.github.io/to-do-list-app/) 
+**Demo:** [Link](https://the-all-spark.github.io/to-do-list-app/)   
 ![screenshot](./assets/app-screenshot.jpg "App screenshot")
 
 ## Realized functionality:

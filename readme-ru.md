@@ -3,6 +3,7 @@
 [Переключиться на английский | Switch to English](./readme.md)
 
 ## О проекте
+Список задач в формате To Do List. Можно добавлять новые пункты списка, вычеркивать выполненные задачи (с возможностью отменить это действие) и удалять их. Внизу списка отображается количество невыполненных задач.
 
 **Инструменты:** 
 ![image](https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white "Visual Studio Code")
@@ -12,7 +13,7 @@
 ![image](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white "CSS") 
 ![image](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E "JS") 
 
-**Демо:** [Перейти на сайт](https://the-all-spark.github.io/to-do-list-app/) 
+**Демо:** [Перейти на сайт](https://the-all-spark.github.io/to-do-list-app/)  
 ![screenshot](./assets/app-screenshot.jpg "Скриншот приложения")
 
 ## Реализованный функционал:
