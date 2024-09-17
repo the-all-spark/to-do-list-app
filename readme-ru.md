@@ -14,7 +14,10 @@
 ![image](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E "JS") 
 
 **Демо:** [Перейти на сайт](https://the-all-spark.github.io/to-do-list-app/)  
-![screenshot](./assets/app-screenshot.jpg "Скриншот приложения")
+<img src="./assets/app-screenshot.jpg" width="400" alt="Скриншот приложение, первоначальный вид">
+<img src="./assets/delete_app-screenshot.jpg" width="400" alt="Удаление и вычеркивание пункта, скриншот">
+<img src="./assets/add_app-screenshot.jpg" width="400" alt="Добавление пункта, скриншот">
+<img src="./assets/new_item_app-screenshot.jpg" width="400" alt="Добавленный новый пункт, скриншот">
 
 ## Реализованный функционал:
 1. форма для ввода новых пунктов списка; заготовка ненумерованного списка для вывода пунктов средствами JS (HTML, CSS);

@@ -17,7 +17,7 @@ A list of tasks in To Do List format. You can add new items to the list, cross o
 <img src="./assets/app-screenshot.jpg" width="400" alt="App screenshot, start view">
 <img src="./assets/delete_app-screenshot.jpg" width="400" alt="Delete and cross out an item, app screenshot">
 <img src="./assets/add_app-screenshot.jpg" width="400" alt="Add an item, app screenshot">
-<img src="./assets/new item_app-screenshot.jpg" width="400" alt="New item, app screenshot">
+<img src="./assets/new_item_app-screenshot.jpg" width="400" alt="New item, app screenshot">
 
 ## Realized functionality:
 1. form for entering new list items; preparation of unnumbered list for outputting items using JS (HTML, CSS);
