@@ -15,8 +15,7 @@ function list() {
     const ulList = document.querySelector(".task-list"); 
 
     //показать изначальную статистику
-    let statNumber = document.querySelector(".stat-number");
-    showStat(listArr.length); 
+    showStat(listArr.length);
 
     // вывести пункты списка из массива listArr (для примера)
     listArr.forEach(function(elem) {
@@ -140,25 +139,38 @@ function list() {
         showStat(itemsToDo);
     }
 
-    //функция удаления устаревшей статистики
+    //* Функция удаления устаревшей статистики
     function removeOldStat() {
-        statNumber.textContent = "";  
+        document.querySelector(".stat-number").textContent = "";  
     }
 
-    // функция вывода статистики внизу списка: принимает длину массива элементов списка,
-    // изменяет число оставшихся пунктов и слово "task" (ед. или мн. число)
-    function showStat(amountOfItems) { 
-        let ending = document.querySelector(".ending");
-        
-        if(amountOfItems == 0) {
-            amountOfItems = "no";
-            ending.textContent = "s";
-        } else if(amountOfItems == 1) {
-            ending.textContent = "";
-        } else {
-            ending.textContent = "s";
-        } 
-        statNumber.prepend(amountOfItems);
+    // * Функция сбора и вывода статистики внизу списка: 
+    // принимает длину массива элементов списка, добавляет текст в блоки
+    function showStat(amountOfItems) {
+        // значение
+        let statBlock = document.querySelector(".stat-number");
+        let statNumber = getStatNumber(amountOfItems); 
+        statBlock.prepend(statNumber);
+
+        // окончание слова task
+        let endingBlock = document.querySelector(".ending");
+        let wordEnding = getWordEnding(amountOfItems);
+        endingBlock.textContent = wordEnding;
+    }
+    
+    // возвращает число для статистики
+    function getStatNumber(amountOfItems) { 
+        return (amountOfItems == 0) ? "no" : amountOfItems;
+    }
+
+    // возвращает окончание слова "task" (ед. или мн. число)
+    function getWordEnding(amountOfItems) {
+        switch(amountOfItems) {
+            case 1:
+                return "";
+            default:   
+                return "s";
+        }
     }
 
 }
